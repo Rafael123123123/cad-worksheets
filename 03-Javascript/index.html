@@ -32,13 +32,13 @@
                     <h2 class="card-header h6">Kitchen</h2>
                     <div class="card-body py-2">
                         <div class="sensor">
-                            <span class="sensor-label"><i class="fa-solid fa-temperature-half icon-temp-sucess"></i> Temperature</span>
-                            <span>21.6 °C</span>
+                            <span class="sensor-label"><i id="kitchen-temperature-icon" class="fa-solid fa-temperature-half icon-temp-sucess"></i> Temperature</span>
+                            <span id="kitchen-temperature">21.6 °C</span>
                         </div>
                         <span class="sensor-time">5 minutes ago</span>
                         <div class="sensor">
-                            <span class="sensor-label"><i class="fa-regular fa-lightbulb icon-light-off"></i> Lights</span>
-                            <span class="text-danger">Off</span>
+                            <label class="sensor-label" for="kitchen-lights"><i id="kitchen-lights-icon" class="fa-regular fa-lightbulb icon-light-off"></i> Lights</label>
+                            <span class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="kitchen-lights"></span>
                         </div>
                         <span class="sensor-time">10 minutes ago</span>
                         <div class="sensor">
@@ -59,23 +59,23 @@
                     <h2 class="card-header h6">Living Room</h2>
                     <div class="card-body py-2">
                         <div class="sensor">
-                            <span class="sensor-label"><i class="fa-solid fa-temperature-half icon-temp"></i> Temperature</span>
-                            <span>22.6 °C</span>
+                            <span class="sensor-label"><i id="living-temperature-icon" class="fa-solid fa-temperature-half icon-temp"></i> Temperature</span>
+                            <span id="living-temperature">22.6 °C</span>
                         </div>
                         <span class="sensor-time">5 minutes ago</span>
                         <div class="sensor">
-                            <span class="sensor-label"><i class="fa-regular fa-lightbulb icon-light-off"></i> Ceiling Lights</span>
-                            <span class="text-danger">Off</span>
+                            <label class="sensor-label" for="living-ceiling-lights"><i id="living-ceiling-lights-icon" class="fa-regular fa-lightbulb icon-light-off"></i> Ceiling Lights</label>
+                            <span class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="living-ceiling-lights"></span>
                         </div>
                         <span class="sensor-time">7 minutes ago</span>
                         <div class="sensor">
-                            <span class="sensor-label"><i class="fa-solid fa-lightbulb icon-light-on"></i> Ambient Lights</span>
-                            <span class="text-success">On</span>
+                            <label class="sensor-label" for="living-ambient-lights"><i id="living-ambient-lights-icon" class="fa-solid fa-lightbulb icon-light-on"></i> Ambient Lights</label>
+                            <span class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="living-ambient-lights" checked></span>
                         </div>
                         <span class="sensor-time">7 minutes ago</span>
                         <div class="sensor">
-                            <span class="sensor-label"><i class="fa-solid fa-music icon-music"></i> Ambient Music</span>
-                            <span class="text-success">On</span>
+                            <label class="sensor-label" for="living-ambient-music"><i id="living-ambient-music-icon" class="fa-solid fa-music icon-music"></i> Ambient Music</label>
+                            <span class="form-check form-switch mb-0"><input class="form-check-input" type="checkbox" role="switch" id="living-ambient-music" checked></span>
                         </div>
                         <span class="sensor-time">17 minutes ago</span>
                     </div>
@@ -87,11 +87,11 @@
                     <div class="card-body py-2">
                         <div class="sensor">
                             <span class="sensor-label"><i class="fa-regular fa-clock icon-clock"></i> Time</span>
-                            <span>22:30</span>
+                            <time id="clock-time">22:30</time>
                         </div>
                         <div class="sensor">
                             <span class="sensor-label"><i class="fa-regular fa-calendar-days"></i> Date</span>
-                            <span>2018-09-18</span>
+                            <time id="clock-date">2018-09-18</time>
                         </div>
                         <div class="sensor">
                             <span class="sensor-label"><i class="fa-solid fa-sun icon-sun"></i> Sunrise / Sunset above horizon</span>

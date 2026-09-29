@@ -52,3 +52,20 @@ body {
 .table th {
     font-weight: 700;
 }
+
+.icon-music-off { color: #dc3545; }
+.icon-temp-mild { color: #198754; }
+
+.form-switch .form-check-input {
+    cursor: pointer;
+}
+
+label.sensor-label {
+    cursor: pointer;
+}
+
+.sensor .form-switch {
+    min-height: 0;
+    font-size: 1rem;
+    line-height: 1;
+}
