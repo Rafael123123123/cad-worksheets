@@ -1,41 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="index.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
-            <li><a href="history.html"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
-        </ul>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fa-solid fa-house"></i> Home Sweet Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html"><i class="fa-solid fa-gauge"></i> Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="history.html"><i class="fa-solid fa-clock-rotate-left"></i> History</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <h1><i class="fa-solid fa-house"></i> Home Sweet Home</h1>
+    <main class="container">
+        <h1 class="h3 mb-3">Dashboard</h1>
+        <div class="row g-4">
+            <section class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header"><h2 class="h5 mb-0"><i class="fa-solid fa-kitchen-set"></i> Kitchen</h2></div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-temperature-half fa-fw text-primary"></i> Temperature</span>
+                            <span class="text-end fw-semibold">21.6 °C<small class="text-body-secondary d-block">5 minutes ago</small></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-lightbulb fa-fw text-primary"></i> Lights</span>
+                            <span class="text-end fw-semibold">Off<small class="text-body-secondary d-block">10 minutes ago</small></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-window-maximize fa-fw text-primary"></i> West Window</span>
+                            <span class="text-end fw-semibold">Open<small class="text-body-secondary d-block">15 minutes ago</small></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-window-maximize fa-fw text-primary"></i> North Window</span>
+                            <span class="text-end fw-semibold">Open<small class="text-body-secondary d-block">15 minutes ago</small></span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header"><h2 class="h5 mb-0"><i class="fa-solid fa-couch"></i> Living Room</h2></div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-temperature-half fa-fw text-primary"></i> Temperature</span>
+                            <span class="text-end fw-semibold">22.6 °C<small class="text-body-secondary d-block">5 minutes ago</small></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-lightbulb fa-fw text-primary"></i> Ceiling Lights</span>
+                            <span class="text-end fw-semibold">Off<small class="text-body-secondary d-block">7 minutes ago</small></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-lightbulb fa-fw text-primary"></i> Ambient Lights</span>
+                            <span class="text-end fw-semibold">On<small class="text-body-secondary d-block">7 minutes ago</small></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-music fa-fw text-primary"></i> Ambient Music</span>
+                            <span class="text-end fw-semibold">On<small class="text-body-secondary d-block">17 minutes ago</small></span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header"><h2 class="h5 mb-0"><i class="fa-solid fa-clock"></i> Clock</h2></div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-clock fa-fw text-primary"></i> Time</span>
+                            <span class="text-end fw-semibold">22:30</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-calendar fa-fw text-primary"></i> Date</span>
+                            <span class="text-end fw-semibold">2018-09-18</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span><i class="fa-solid fa-sun fa-fw text-primary"></i> Sunrise / Sunset</span>
+                            <span class="text-end fw-semibold">above horizon</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
 
-    <section>
-        <h2><i class="fa-solid fa-kitchen-set"></i> Kitchen</h2>
-        <p><i class="fa-solid fa-temperature-half"></i> Temperature 21.6 °C 5 minutes ago</p>
-        <p><i class="fa-solid fa-lightbulb"></i> Lights Off 10 minutes ago</p>
-        <p><i class="fa-solid fa-window-maximize"></i> West Window Open 15 minutes ago</p>
-        <p><i class="fa-solid fa-window-maximize"></i> North Window Open 15 minutes ago</p>
-    </section>
-
-    <section>
-        <h2><i class="fa-solid fa-couch"></i> Living Room</h2>
-        <p><i class="fa-solid fa-temperature-half"></i> Temperature 22.6 °C 5 minutes ago</p>
-        <p><i class="fa-solid fa-lightbulb"></i> Ceiling Lights Off 7 minutes ago</p>
-        <p><i class="fa-regular fa-lightbulb"></i> Ambient Lights On 7 minutes ago</p>
-        <p><i class="fa-solid fa-music"></i> Ambient Music On 17 minutes ago</p>
-    </section>
-
-    <section>
-        <h2><i class="fa-solid fa-clock"></i> Clock</h2>
-        <p><i class="fa-regular fa-clock"></i> Time 22:30</p>
-        <p><i class="fa-regular fa-calendar"></i> Date 2018-09-18</p>
-        <p><i class="fa-solid fa-sun"></i> Sunrise / Sunset above horizon</p>
-    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
