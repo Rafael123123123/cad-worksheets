@@ -1,0 +1,54 @@
+body {
+    background-color: #fff;
+    font-size: 0.9rem;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+.card {
+    border-color: #dee2e6;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.sensor {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 0;
+}
+
+.sensor-label {
+    font-weight: 700;
+}
+
+.sensor-label i {
+    width: 1.1em;
+    text-align: center;
+}
+
+.sensor-time {
+    display: block;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+.icon-temp { color: #dc3545; }
+.icon-temp-cold { color: #0d6efd; }
+.icon-light-off { color: #343a40; }
+.icon-light-on { color: #ffc107; }
+.icon-window { color: #6c757d; }
+.icon-music { color: #0d6efd; }
+.icon-clock { color: #0d6efd; }
+.icon-sun { color: #ffc107; }
+
+.table th {
+    font-weight: 700;
+}
