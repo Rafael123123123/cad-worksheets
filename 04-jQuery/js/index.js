@@ -3,6 +3,10 @@ var app = (function($) {
 
   var TEMPERATURE_INTERVAL = 5000;
   var CLOCK_INTERVAL = 1000;
+  var WEATHER_URL = 'https://api.openweathermap.org/data/2.5/weather';
+  var WEATHER_API_KEY = (typeof CONFIG !== 'undefined' && CONFIG.OPENWEATHER_API_KEY) || '';
+
+  var weatherFetchedAt = null;
 
   var toggles = [
     { id: 'kitchen-lights', on: 'fa-solid fa-lightbulb icon-light-on', off: 'fa-regular fa-lightbulb icon-light-off' },
@@ -65,20 +69,96 @@ var app = (function($) {
     $('#clock-time').text(time).attr('datetime', time);
   }
 
+  function formatHour(unixSeconds) {
+    var date = new Date(unixSeconds * 1000);
+    return date.getHours() + 'h' + pad(date.getMinutes());
+  }
+
+  function plural(value, unit) {
+    return value + ' ' + unit + (value === 1 ? '' : 's') + ' ago';
+  }
+
+  function elapsedText(since) {
+    var seconds = Math.floor((Date.now() - since) / 1000);
+    if (seconds < 60) {
+      return plural(seconds, 'second');
+    }
+    if (seconds < 3600) {
+      return plural(Math.floor(seconds / 60), 'minute');
+    }
+    return plural(Math.floor(seconds / 3600), 'hour');
+  }
+
+  function updateWeatherElapsed() {
+    if (weatherFetchedAt !== null) {
+      $('#weather-updated').text(elapsedText(weatherFetchedAt));
+    }
+  }
+
+  function showWeatherError(message) {
+    $('#weather-error').text(message).prop('hidden', false);
+  }
+
+  function showWeather(data) {
+    $('#weather-temperature').text(data.main.temp.toFixed(2) + ' °C');
+    $('#weather-temperature-max').text(data.main.temp_max.toFixed(2) + ' °C');
+    $('#weather-temperature-min').text(data.main.temp_min.toFixed(2) + ' °C');
+    $('#weather-humidity').text(data.main.humidity + '%');
+    $('#weather-sunrise').text(formatHour(data.sys.sunrise));
+    $('#weather-sunset').text(formatHour(data.sys.sunset));
+    weatherFetchedAt = Date.now();
+    updateWeatherElapsed();
+  }
+
+  function fetchWeather() {
+    var city = $.trim($('#weather-city').val());
+    $('#weather-error').prop('hidden', true);
+
+    if (!WEATHER_API_KEY || WEATHER_API_KEY === 'YOUR_API_KEY') {
+      showWeatherError('Missing API key: set OPENWEATHER_API_KEY in js/config.js.');
+      return;
+    }
+    if (!city) {
+      return;
+    }
+
+    $('#weather-get').prop('disabled', true);
+    $.getJSON(WEATHER_URL, { units: 'metric', q: city, appid: WEATHER_API_KEY })
+      .done(showWeather)
+      .fail(function(xhr) {
+        var message = xhr.responseJSON && xhr.responseJSON.message;
+        showWeatherError('Could not fetch the weather' + (message ? ': ' + message : '.'));
+      })
+      .always(function() {
+        $('#weather-get').prop('disabled', false);
+      });
+  }
+
+  function initWeather() {
+    $('#weather-form').on('submit', function(event) {
+      event.preventDefault();
+      fetchWeather();
+    });
+    fetchWeather();
+  }
+
   function init() {
     initToggles();
     updateTemperatures();
     updateDate();
     updateTime();
+    initWeather();
     setInterval(updateTemperatures, TEMPERATURE_INTERVAL);
     setInterval(updateTime, CLOCK_INTERVAL);
+    setInterval(updateWeatherElapsed, CLOCK_INTERVAL);
   }
 
   $(init);
 
   return {
     updateTemperatures: updateTemperatures,
-    updateTime: updateTime
+    updateTime: updateTime,
+    fetchWeather: fetchWeather
   };
 
 })(jQuery);

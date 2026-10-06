@@ -69,3 +69,14 @@ label.sensor-label {
     font-size: 1rem;
     line-height: 1;
 }
+
+.weather-form {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-around;
+    margin-top: 0.5rem;
+}
+
+.weather-form .form-control {
+    max-width: 12rem;
+}
