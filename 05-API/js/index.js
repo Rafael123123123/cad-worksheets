@@ -7,6 +7,7 @@ var app = (function($) {
   var WEATHER_API_KEY = (typeof CONFIG !== 'undefined' && CONFIG.OPENWEATHER_API_KEY) || '';
 
   var weatherFetchedAt = null;
+  var storage = window.sessionStorage;
 
   var toggles = [
     { id: 'kitchen-lights', on: 'fa-solid fa-lightbulb icon-light-on', off: 'fa-regular fa-lightbulb icon-light-off' },
@@ -26,13 +27,49 @@ var app = (function($) {
     $('#' + toggle.id + '-icon').attr('class', checked ? toggle.on : toggle.off);
   }
 
+  function saveToggle(toggle) {
+    var state = {
+      checked: $('#' + toggle.id).prop('checked'),
+      toggledAt: Date.now()
+    };
+    storage.setItem(toggle.id, JSON.stringify(state));
+  }
+
+  function loadToggle(toggle) {
+    var stored = storage.getItem(toggle.id);
+    if (stored === null) {
+      return null;
+    }
+    try {
+      return JSON.parse(stored);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function updateToggleTimes() {
+    $.each(toggles, function(index, toggle) {
+      var state = loadToggle(toggle);
+      if (state !== null) {
+        $('#' + toggle.id + '-time').text(elapsedText(state.toggledAt));
+      }
+    });
+  }
+
   function initToggles() {
     $.each(toggles, function(index, toggle) {
+      var state = loadToggle(toggle);
+      if (state !== null) {
+        $('#' + toggle.id).prop('checked', state.checked);
+      }
       $('#' + toggle.id).on('change', function() {
         updateToggleIcon(toggle);
+        saveToggle(toggle);
+        updateToggleTimes();
       });
       updateToggleIcon(toggle);
     });
+    updateToggleTimes();
   }
 
   function randomTemperature() {
@@ -151,6 +188,7 @@ var app = (function($) {
     setInterval(updateTemperatures, TEMPERATURE_INTERVAL);
     setInterval(updateTime, CLOCK_INTERVAL);
     setInterval(updateWeatherElapsed, CLOCK_INTERVAL);
+    setInterval(updateToggleTimes, CLOCK_INTERVAL);
   }
 
   $(init);
