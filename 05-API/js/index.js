@@ -7,7 +7,8 @@ var app = (function($) {
   var WEATHER_API_KEY = (typeof CONFIG !== 'undefined' && CONFIG.OPENWEATHER_API_KEY) || '';
 
   var weatherFetchedAt = null;
-  var storage = window.sessionStorage;
+  // sessionStorage is cleared when the tab/browser closes; localStorage persists.
+  var storage = window.localStorage;
 
   var toggles = [
     { id: 'kitchen-lights', on: 'fa-solid fa-lightbulb icon-light-on', off: 'fa-regular fa-lightbulb icon-light-off' },
