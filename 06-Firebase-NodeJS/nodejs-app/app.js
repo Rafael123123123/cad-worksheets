@@ -14,17 +14,39 @@ initializeApp({
 
 const messagesRef = getDatabase().ref('messages');
 
-const message = {
-  text: 'A new request was received.',
-  type: 'success'
-};
+const SEND_INTERVAL = 5000;
 
-messagesRef.push(message)
-  .then((ref) => {
-    console.log('Message written with key', ref.key);
-    process.exit(0);
-  })
-  .catch((error) => {
-    console.error('Failed to write message:', error.message);
-    process.exit(1);
-  });
+const sentences = [
+  'A new request was received.',
+  'The kitchen lights were turned on.',
+  'The front door was left open.',
+  'Temperature in the living room is above 25 °C.',
+  'The backup finished successfully.',
+  'Motion detected in the garage.',
+  'The washing machine has finished.',
+  'Battery of the smoke detector is low.'
+];
+
+const types = ['success', 'warning', 'danger', 'primary'];
+
+function randomItem(array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+function sendRandomMessage() {
+  const message = {
+    text: randomItem(sentences),
+    type: randomItem(types)
+  };
+
+  return messagesRef.push(message)
+    .then((ref) => {
+      console.log(`[${message.type}] ${message.text} (key ${ref.key})`);
+    })
+    .catch((error) => {
+      console.error('Failed to write message:', error.message);
+    });
+}
+
+console.log(`Sending a random message every ${SEND_INTERVAL / 1000} seconds. Press Ctrl+C to stop.`);
+setInterval(sendRandomMessage, SEND_INTERVAL);
