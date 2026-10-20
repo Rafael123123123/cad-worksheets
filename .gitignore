@@ -1,3 +1,7 @@
 # Local API keys
 04-jQuery/js/config.js
 05-API/js/config.js
+
+# Worksheet 6: Node.js dependencies and private Firebase key
+06-Firebase-NodeJS/nodejs-app/node_modules/
+06-Firebase-NodeJS/nodejs-app/serviceAccountKey.json
